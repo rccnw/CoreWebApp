@@ -1,0 +1,26 @@
+
+
+How To Create Windows Installer MSI - .Net Core Wix
+https://www.youtube.com/watch?v=6Yf-eDsRrnM
+
+46:00   framework apps
+48:00	core
+
+- open directory with .sln file
+- cmd
+- dontnet publish -r win-x64
+
+
+
+
+Markdown syntax
+https://en.support.wordpress.com/markdown-quick-reference/
+
+Markdown Editor
+https://typora.io/
+
+
+PanDoc (needed to save .rtf)
+https://github.com/jgm/pandoc/releases/latest
+
+

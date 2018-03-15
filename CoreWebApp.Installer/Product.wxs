@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- give product a unique ID per platform-->
+  <?if $(var.Platform)=x64?>
+  <?define ProductCode="{5EC36103-42A4-42CB-9F93-24F0114B26A9}" ?>
+  <?else?>
+  <?define ProductCode="{89A51C54-E3BA-4492-A577-46106E0FC849}" ?>
+  <?endif?>
+
+  <!-- fixed upgrade ID -->
+  <?define UpgradeCode="{440AC6B4-FEC0-4AB9-8B3D-6DF86FEEFF7E}" ?>
+
+  <?define BuildVersion=1.0.0.0 ?>
+
+
+  <!-- Define main product-->
+	<Product 
+	  Id="*" 
+	  Name="!(loc.ProductName_$(var.Platform))" 
+	  Language="!(loc.Language)" 
+	  Version="$(var.BuildVersion)" 
+	  Manufacturer="!(loc.Company)" 
+	  UpgradeCode="$(var.UpgradeCode)">
+
+	  <!-- Provide package details -->
+		<Package 
+		  InstallerVersion="200" 
+		  Compressed="yes" 
+		  InstallScope="perMachine" 
+		  Platform="$(var.Platform)"
+		  Manufacturer="!(loc.Company)"
+		  Keywords="!(loc.Keywords)" 
+		  Comments="!(loc.Comments)"
+		  Description="!(loc.Description)"
+		  Languages="!(loc.Language)"
+		  />
+
+	  <!-- Downgrade Error Message -->
+		<MajorUpgrade DowngradeErrorMessage="A newer version of CoreWebApp is already installed." />
+
+	  <!-- Include .cab file into .msi file -->
+	  <MediaTemplate EmbedCab="yes"/>
+    
+    <!--Define main app icon -->
+
+    <Icon Id="icon.ico"
+          SourceFile ="$(var.CoreWebApp.ProjectDir)\resources\app.ico"
+          />
+    
+    <!-- use the icon.ico icon for this installer - shows up in add/remove programs-->
+    <Property Id="APPPRODUCTICON">icon.ico</Property>
+	  <Property Id="APPURLINFOABOUT">http://www.alaskasworld.com/</Property>
+
+    <!-- create a basic UI for the installer -->
+    <UIRef Id="WixUI_Minimal"/>
+
+    <!-- Change the installer UI background images    -->
+    <!-- main image on left  493x312-->
+    <WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)Assets\DialogBmp.bmp"/>
+    
+    <!-- banner: 493 x 58 -->
+	  <WixVariable Id="WixUIBannerBmp" Value="$(var.ProjectDir)Assets\Banner493x58.bmp"/>
+
+
+	  <WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)Assets\License.rtf"/>
+
+	  <!-- Define components, shortcuts, files etc. for installer -->
+		<Feature 
+		  Id="ProductFeature" 
+		  Title="CoreWebApp.Installer" 
+		  Level="1">
+
+			<ComponentGroupRef Id="ProductComponents" />
+
+		</Feature>
+	</Product>
+
+
+
+
+</Wix>
