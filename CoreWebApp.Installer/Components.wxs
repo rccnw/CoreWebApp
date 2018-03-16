@@ -13,6 +13,10 @@
       
       <Component Id="TestFile" Guid="{0F90E1B4-34D9-4659-898D-B1BE3D1CC58D}">
         <File Id="FileTestFile" Name="api-ms-win-core-console-l1-1-0.dll" KeyPath="yes" ></File>
+
+        <!-- Remove Start Menu Item -->
+        <RemoveFolder Id="RemoveStartMenu" Directory="InstallProgramMenuFolder" On="uninstall"  />
+      
       </Component>
     </DirectoryRef>
     
