@@ -9,6 +9,11 @@
       
     </ComponentGroup>
 
+
+
+
+
+
     <DirectoryRef Id="INSTALLFOLDER" FileSource="..\CoreWebApp\bin\$(var.Platform)\Debug\netcoreapp2.0\win-$(var.Platform)\publish\">
       
       <Component Id="TestFile" Guid="{0F90E1B4-34D9-4659-898D-B1BE3D1CC58D}">
