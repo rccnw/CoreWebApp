@@ -49,8 +49,8 @@
           />
     
     <!-- use the icon.ico icon for this installer - shows up in add/remove programs-->
-    <Property Id="APPPRODUCTICON">icon.ico</Property>
-	  <Property Id="APPURLINFOABOUT">http://www.alaskasworld.com/</Property>
+    <Property Id="ARPPRODUCTICON">icon.ico</Property>
+	  <Property Id="ARPURLINFOABOUT">http://www.alaskasworld.com/</Property>
 
     <!-- create a basic UI for the installer -->
     <UIRef Id="WixUI_Minimal"/>
