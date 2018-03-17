@@ -72,7 +72,7 @@
     <!-- Clean previous build folder -->
 	  <Exec Command="rd /s /q ..\CoreWebApp\bin\$(Configuration)\netcoreapp2.0\win-$(Platform)"/>
     <!-- publish .Net Core app -->
-    <Exec Command="dotnet publish ..\CoreWebApp\bin\$(Configuration)\netcoreapp2.0\win-$(Platform)"/>
+    <Exec Command="dotnet publish ..\CoreWebApp\CoreWebApp.csproj -c $(Configuration) -r win-$(Platform)"/>
     
    <!-- 1:28:45 -->
 
