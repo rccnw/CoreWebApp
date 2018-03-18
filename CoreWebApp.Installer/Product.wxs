@@ -16,7 +16,7 @@
 
   <!-- Define main product-->
 	<Product 
-	  Id="*" 
+	  Id="$(var.ProductCode)" 
 	  Name="!(loc.ProductName_$(var.Platform))" 
 	  Language="!(loc.Language)" 
 	  Version="$(var.BuildVersion)" 
@@ -28,7 +28,7 @@
 		  InstallerVersion="200" 
 		  Compressed="yes" 
 		  InstallScope="perMachine" 
-		  Platform="$(var.Platform)"
+
 		  Manufacturer="!(loc.Company)"
 		  Keywords="!(loc.Keywords)" 
 		  Comments="!(loc.Comments)"
@@ -36,7 +36,9 @@
 		  Languages="!(loc.Language)"
 		  />
 
-	  <!-- Downgrade Error Message -->
+    <!--     Platform="$(var.Platform)" -->
+
+    <!-- Downgrade Error Message -->
 		<MajorUpgrade DowngradeErrorMessage="A newer version of CoreWebApp is already installed." />
 
 	  <!-- Include .cab file into .msi file -->
@@ -62,21 +64,13 @@
     <!-- banner: 493 x 58 -->
 	  <WixVariable Id="WixUIBannerBmp" Value="$(var.ProjectDir)Assets\Banner493x58.bmp"/>
 
-
 	  <WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)Assets\License.rtf"/>
 
 	  <!-- Define components, shortcuts, files etc. for installer -->
-		<Feature 
-		  Id="ProductFeature" 
-		  Title="CoreWebApp.Installer" 
-		  Level="1">
-
+		<Feature  Id="ProductFeature" Title="CoreWebApp" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
-
+      <ComponentGroupRef Id="PublishedComponents" />      
 		</Feature>
+    
 	</Product>
-
-
-
-
 </Wix>

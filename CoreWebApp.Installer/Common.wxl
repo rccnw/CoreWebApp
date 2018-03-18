@@ -6,9 +6,9 @@
   <String Id="Language">1033</String>
   <String Id="Company">AAG</String>
 
-  <String Id="Keywords">keyword</String>
-  <String Id="Comments">.Net Core 2.0 WebApi</String>
-  <String Id="Description">Installer for .Net Core 2.0 WebApi project</String>
+  <String Id="Keywords">dotnet,core,application,installer</String>
+  <String Id="Comments">.Net Core 2.0 WebApp</String>
+  <String Id="Description">Installer for .Net Core 2.0 Web project</String>
 
   <String Id="ProductNameFolder">CoreWebApp</String>
   

@@ -3,14 +3,26 @@
 How To Create Windows Installer MSI - .Net Core Wix
 https://www.youtube.com/watch?v=6Yf-eDsRrnM
 
+https://github.com/angelsix/youtube/tree/develop/C%23%20General/Windows%20Installer%20Wix%20DotNet%20Core
+
+
+
 46:00   framework apps
 48:00	core
+
+
+1:49
+
+
 
 - open directory with .sln file
 - cmd
 - dontnet publish -r win-x64
 
-
+Heat
+https://stackoverflow.com/questions/2605907/wix-heatdirectory-task-setting-the-preprocessorvariable
+https://github.com/DavidEGrayson/wix-example-harvest-directory
+https://www.codeproject.com/Articles/1107786/Enabling-Harvest-Heat-exe-in-a-Wix-Setup-Project
 
 
 Markdown syntax

@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Fragment>
-    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-      
-      
-      <ComponentRef Id="TestFile"/>
-      
-      
+  <Fragment>    
+    
+    <ComponentGroup Id="ProductComponents" >      
+      <!-- Shortcut -->      
+      <ComponentRef Id="MainAppShortcut"/>         
     </ComponentGroup>
 
-
-
-
-
-
-    <DirectoryRef Id="INSTALLFOLDER" FileSource="..\CoreWebApp\bin\$(var.Platform)\Debug\netcoreapp2.0\win-$(var.Platform)\publish\">
+  <!-- Installed Files -->
+  <DirectoryRef Id="INSTALLFOLDER" FileSource="..\CoreWebApp\bin\$(var.Platform)\Debug\netcoreapp2.0\win-$(var.Platform)\publish\">
       
-      <Component Id="TestFile" Guid="{0F90E1B4-34D9-4659-898D-B1BE3D1CC58D}">
-        <File Id="FileTestFile" Name="api-ms-win-core-console-l1-1-0.dll" KeyPath="yes" ></File>
+    <!-- Shortcut to main application -->
+    <Component Id="MainAppShortcut" Guid="{0F90E1B4-34D9-4659-898D-B1BE3D1CC58D}">
 
-        <!-- Remove Start Menu Item -->
-        <RemoveFolder Id="RemoveStartMenu" Directory="InstallProgramMenuFolder" On="uninstall"  />
+    <Shortcut
+      Id="MainAppShortcut"
+      Name="!(loc.ProductName_$(var.Platform))"
+      Target="[INSTALLFOLDER]CoreWebApp.exe"
+      Directory="InstallProgramMenuFolder"
+      WorkingDirectory="INSTALLFOLDER"
+      Icon="icon.ico" />
+
+    <RegistryValue Id="RegShortcutKey" Root="HKCU" Key="SOFTWARE\!(loc.ProductNameFolder)" Name="Shortcut" Value="1" Type="integer" KeyPath="yes"/>                
+
+    <!-- Remove Start Menu Item -->
+    <RemoveFolder Id="RemoveStartMenu" Directory="InstallProgramMenuFolder" On="uninstall"  />
       
-      </Component>
-    </DirectoryRef>
-    
-    
+    </Component>
+  </DirectoryRef>   
     
   </Fragment>
 </Wix>

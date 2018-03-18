@@ -31,6 +31,7 @@
     <Compile Include="Components.wxs" />
     <Compile Include="Directories.wxs" />
     <Compile Include="Product.wxs" />
+    <Compile Include="ProductInstallFiles.wxs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Common.wxl" />
@@ -46,6 +47,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
     <WixExtension Include="WixUIExtension">
       <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
       <Name>WixUIExtension</Name>
@@ -65,20 +70,36 @@
   <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">
     <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
   </Target>
-  
-
- 
-	<Target Name="BeforeBuild">
+  <Target Name="BeforeBuild">
     <!-- Clean previous build folder -->
-	  <Exec Command="rd /s /q ..\CoreWebApp\bin\$(Configuration)\netcoreapp2.0\win-$(Platform)"/>
+    <Exec Command="rd /s /q ..\CoreWebApp\bin\$(Configuration)\netcoreapp2.0\win-$(Platform)" />
     <!-- publish .Net Core app -->
-    <Exec Command="dotnet publish ..\CoreWebApp\CoreWebApp.csproj -c $(Configuration) -r win-$(Platform)"/>
-    
-   <!-- 1:28:45 -->
-
-	</Target>
-
-	<Target Name="AfterBuild">
-	</Target>
-
+    <Exec Command="dotnet publish ..\CoreWebApp\CoreWebApp.csproj -c $(Configuration) -r win-$(Platform)" />
+    <PropertyGroup>
+      <DefineConstants>BuildVersion=%(AssemblyVersion.Version);BasePath=..\CoreWebApp\bin\$(Configuration)\netcoreapp2.0\win-$(Platform)\publish</DefineConstants>
+    </PropertyGroup>
+    <HeatDirectory 
+      OutputFile="ProductInstallFiles.wxs" 
+      Directory="..\CoreWebApp\bin\$(Configuration)\netcoreapp2.0\win-$(Platform)\publish" 
+      ComponentGroupName="PublishedComponents" 
+      DirectoryRefId="INSTALLFOLDER" 
+      SuppressCom="true"
+      SuppressFragments="true" 
+      SuppressRegistry="true" 
+      AutogenerateGuids="false" 
+      GenerateGuidsNow="true" 
+      SuppressRootDirectory="true" 
+      ToolPath="$(WixToolPath)" 
+      PreprocessorVariable="var.BasePath" 
+      NoLogo="true" />
+  </Target>
+  <Target Name="AfterBuild">
+    <!-- Get assembly version-->
+    <GetAssemblyIdentity AssemblyFiles="..\CoreWebApp\bin\$(Configuration)\netcoreapp2.0\win-$(Platform)\CoreWebApp.dll">
+      <Output TaskParameter="Assemblies" ItemName="AssemblyVersion" />
+    </GetAssemblyIdentity>
+    <!-- Rename and move final MSI -->
+    <Exec Command="if not exist Installs mkdir Installs" />
+    <Exec Command="move bin\$(Configuration)\en-us\$(OutputName).msi Installs\CoreWebApp-%(AssemblyVersion.Version)-$(Configuration)-$(Platform).msi" />
+  </Target>
 </Project>
