@@ -35,8 +35,14 @@ https://www.fireeye.com/blog/threat-research/2016/02/greater_visibilityt.html
 
 use VM for testing
 
+Hyper-V Virtual Switch
+https://www.youtube.com/watch?v=zhvNi6UUdwo
 
+Creating Virtual Networks And Virtual Switches
+https://www.youtube.com/watch?v=cfauedEoh3E
 
+Configure virtual local area networks for Hyper-V
+https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/deploy/configure-virtual-local-areal-networks-for-hyper-v
 
 
 
@@ -56,8 +62,8 @@ https://www.youtube.com/watch?v=XfwlWUJPmYU
 46:00   framework apps
 48:00	core
 
-
-1:49
+Test Kitchen Hyper-V
+https://learn.chef.io/modules/local-development/windows/hyper-v#/
 
 
 
