@@ -1,3 +1,43 @@
+﻿
+
+editor for MSI 
+orca.exe
+
+windows installer logging - PS script
+
+http://jeffwouters.nl/index.php/2013/05/enable-and-disable-msi-logging-through-powershell/
+http://jeffwouters.nl/index.php/2013/05/powershell-function-to-check-the-property-to-an-item/
+
+
+https://www.advancedinstaller.com/user-guide/qa-log.html
+
+
+msiexec /i <path_to_msi> /L*V <path_to_log>
+msiexec /i "C:\MyPackage\Example.msi" /L*V "C:\log\example.log"
+Automated logging with the Windows Installer Logging Policy
+In order to enable this option, you need to import the registry settings below. 
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer]
+"Logging"="voicewarmup"
+"Debug"=dword:00000007
+
+The .LOG file will be created in the currently logged on user's Temp folder and will have a name in the following format: "MSI*.LOG".
+In order to disable the debugging policy, you can delete the registry values
+
+https://kevinmarquette.github.io/2016-10-21-powershell-installing-msi-files/
+
+https://community.spiceworks.com/topic/507906-powershell-to-install-exe-and-msi-package
+
+generic PS logging info
+https://www.fireeye.com/blog/threat-research/2016/02/greater_visibilityt.html
+
+
+use VM for testing
+
+
+
+
 
 
 How To Create Windows Installer MSI - .Net Core Wix
@@ -5,6 +45,12 @@ https://www.youtube.com/watch?v=6Yf-eDsRrnM
 
 https://github.com/angelsix/youtube/tree/develop/C%23%20General/Windows%20Installer%20Wix%20DotNet%20Core
 
+How can we install our program to always run as administrator?
+If your application is written in .Net then you can just edit your application manifest file to add  <requestedExecutionLevel level="requireAdministrator" uiAccess="false" />﻿
+
+another
+Working with the WiX Toolset
+https://www.youtube.com/watch?v=XfwlWUJPmYU
 
 
 46:00   framework apps
